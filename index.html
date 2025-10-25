@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vSAS</title>
+    <meta name="description" content="Experience authentic SAS operations in flight simulation. Join vSAS for realistic flying with accurate Aanerud liveries and vAMSYS integration.">
+    <link rel="icon" type="image/png" href="vSAS_Banner.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'electric-blue': '#1E40AF',
+                        'heritage-blue': '#000C99',
+                        'sky-blue': '#8DD6FF',
+                        'sunrise-peach': '#FFC5C1',
+                        'horizon-red': '#FF5B62',
+                        'midnight-black': '#000000',
+                        'cloud-white': '#FFFFFF',
+                        'mist-grey': '#8F8F8F',
+                    },
+                    fontFamily: {
+                        'scandinavian': ['ScandinavianNew', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar with Logo and Join Button -->
+    <div class="fixed-header">
+        <div class="flex justify-between items-center px-6 py-4">
+            <div class="flex items-center">
+                <button id="sidebar-toggle" class="mr-4 p-2 rounded-lg hover:bg-gray-100 transition duration-200">
+                    <i class="fas fa-bars text-gray-600 text-lg"></i>
+                </button>
+                <img src="vSAS_Header_-_Electric_Blue.png" alt="vSAS Logo" class="h-8">
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-2 text-sm text-gray-600">
+                    <i class="fas fa-globe text-gray-400"></i>
+                    <span>English</span>
+                </div>
+                <a href="https://vamsys.io/register/vSAS" target="_blank" 
+                   class="bg-electric-blue text-white px-6 py-2 rounded-full hover:bg-heritage-blue transition duration-300 font-medium text-sm">
+                    Join vSAS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out z-40 border-r border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+            <img src="vSAS_Header_-_Electric_Blue.png" alt="vSAS Logo" class="h-10">
+        </div>
+        
+        <nav class="mt-6">
+            <div class="px-6 space-y-2">
+                <a href="#home" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-home w-5 mr-3 text-gray-400"></i>
+                    Home
+                </a>
+                <a href="fleet.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-plane w-5 mr-3 text-gray-400"></i>
+                    Our Fleet
+                </a>
+                <a href="#liveries" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-palette w-5 mr-3 text-gray-400"></i>
+                    Liveries
+                </a>
+                <a href="#network" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-globe-europe w-5 mr-3 text-gray-400"></i>
+                    Network
+                </a>
+                <a href="#community" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-users w-5 mr-3 text-gray-400"></i>
+                    Community
+                </a>
+            </div>
+            
+            <div class="mt-8 px-6">
+                <div class="border-t border-gray-100 pt-6">
+                    <a href="https://vamsys.io/register/vSAS" target="_blank" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-user-plus w-5 mr-3 text-gray-400"></i>
+                        vAMSYS Registration
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-book w-5 mr-3 text-gray-400"></i>
+                        Pilot Handbook
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fab fa-discord w-5 mr-3 text-gray-400"></i>
+                        Discord Server
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-life-ring w-5 mr-3 text-gray-400"></i>
+                        Support
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+    <!-- Hero Section with Aircraft Background -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden" 
+             style="background-image: url('SASA320.png'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 aircraft-overlay"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight text-white">
+                    Experience <span class="text-sky-blue">Authentic</span><br>
+                    SAS Operations
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 max-w-2xl font-medium leading-relaxed text-white/90">
+                    Join vSAS and fly with precision. Featuring accurate Aanerud liveries, 
+                    real-world schedules, and seamless vAMSYS integration.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="https://vamsys.io/register/vSAS" target="_blank" 
+                       class="bg-gradient-to-r from-sky-blue to-electric-blue text-white px-12 py-5 rounded-full text-xl font-bold hover:shadow-2xl hover:scale-105 transition duration-300 inline-flex items-center justify-center">
+                        <i class="fas fa-plane-departure mr-4"></i>
+                        Start Flying
+                    </a>
+                    <a href="#fleet" 
+                       class="border-3 border-white/80 text-white px-12 py-5 rounded-full text-xl font-bold hover:bg-white hover:text-electric-blue transition duration-300 inline-flex items-center justify-center backdrop-blur-sm">
+                        <i class="fas fa-eye mr-4"></i>
+                        Explore Fleet
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-white/70 text-3xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Some Of Our Aircraft Section -->
+    <section id="aircraft" class="py-32 bg-gradient-to-br from-white to-sky-blue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-8">Some Of Our Aircraft</h2>
+                <p class="text-xl md:text-2xl text-mist-grey max-w-4xl mx-auto font-medium leading-relaxed">
+                    Experience authentic SAS operations with our meticulously detailed aircraft fleet
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div class="relative">
+                    <img src="A320neo.png" alt="SAS A320neo" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-electric-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Airbus A320neo</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        The backbone of our European network. Modern, efficient, and comfortable, 
+                        our A320neo family serves destinations across Europe with SAS's renowned service quality.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">180 Passengers</div>
+                            <div class="text-sm text-gray-600">European Routes</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">6,100 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 lg:order-2">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Airbus A350</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Our flagship long-haul aircraft. The A350 represents the pinnacle of modern aviation technology, 
+                        connecting Scandinavia to destinations across North America and Asia with unmatched comfort.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">300 Passengers</div>
+                            <div class="text-sm text-gray-600">Long Haul</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-globe text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">15,000 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:order-1">
+                    <img src="a350.webp" alt="SAS A350" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-heritage-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="fleet.html" class="bg-gradient-to-r from-electric-blue to-heritage-blue text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-lg hover:scale-105 transition duration-300 inline-flex items-center">
+                    <i class="fas fa-plane mr-3"></i>
+                    View Complete Fleet
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aanerud Liveries Section -->
+    <section id="liveries" class="py-32 livery-showcase relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-sky-blue/30 to-sunrise-peach/30"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-8">
+                Authentic <span class="text-heritage-blue">Aanerud</span> Liveries
+            </h2>
+            <p class="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-medium leading-relaxed mb-16">
+                Experience the most accurate and detailed SAS liveries created by the renowned livery designer Aanerud. 
+                Every aircraft in our fleet features meticulously crafted paintwork that mirrors real-world SAS aircraft.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl">
+                    <i class="fas fa-palette text-electric-blue text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pixel Perfect</h3>
+                    <p class="text-gray-700">
+                        Every detail matches real SAS aircraft, from registration numbers to weathering effects.
+                    </p>
+                </div>
+                <div class="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl">
+                    <i class="fas fa-award text-electric-blue text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Award Winning</h3>
+                    <p class="text-gray-700">
+                        Aanerud's liveries are recognized throughout the flight simulation community for their quality.
+                    </p>
+                </div>
+                <div class="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl">
+                    <i class="fas fa-sync-alt text-electric-blue text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Always Updated</h3>
+                    <p class="text-gray-700">
+                        Our livery collection is continuously updated to reflect the latest SAS fleet changes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Network Section -->
+    <section id="network" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-8">Global Network</h2>
+                <p class="text-xl md:text-2xl text-mist-grey max-w-4xl mx-auto font-medium leading-relaxed">
+                    Fly authentic SAS routes across Europe, North America, and Asia with real-world schedules
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="text-center p-8 feature-card rounded-2xl">
+                    <div class="bg-gradient-to-br from-electric-blue to-heritage-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-map-marked-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">3,200+</h3>
+                    <p class="text-mist-grey font-medium">Routes Available</p>
+                </div>
+                
+                <div class="text-center p-8 feature-card rounded-2xl">
+                    <div class="bg-gradient-to-br from-sky-blue to-electric-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-globe-europe text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">130+</h3>
+                    <p class="text-mist-grey font-medium">Destinations</p>
+                </div>
+                
+                <div class="text-center p-8 feature-card rounded-2xl">
+                    <div class="bg-gradient-to-br from-sunrise-peach to-horizon-red text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">24/7</h3>
+                    <p class="text-mist-grey font-medium">Operations</p>
+                </div>
+                
+                <div class="text-center p-8 feature-card rounded-2xl">
+                    <div class="bg-gradient-to-br from-heritage-blue to-midnight-black text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">100%</h3>
+                    <p class="text-mist-grey font-medium">Real Schedules</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-electric-blue/5 to-sky-blue/5 rounded-3xl p-12">
+                <div class="grid lg:grid-cols-3 gap-12 items-center">
+                    <div class="lg:col-span-2">
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Powered by vAMSYS</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                            Experience the most advanced virtual airline management system with real-time flight tracking, 
+                            comprehensive PIREP system, and seamless integration with industry-standard tools like 
+                            Navigraph and SimBrief.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="bg-electric-blue/10 text-electric-blue px-4 py-2 rounded-full font-medium">Flight Tracking</span>
+                            <span class="bg-heritage-blue/10 text-heritage-blue px-4 py-2 rounded-full font-medium">PIREP System</span>
+                            <span class="bg-sky-blue/10 text-sky-blue px-4 py-2 rounded-full font-medium">SimBrief Integration</span>
+                            <span class="bg-sunrise-peach/10 text-horizon-red px-4 py-2 rounded-full font-medium">Live Weather</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-white p-8 rounded-2xl shadow-xl">
+                            <i class="fas fa-rocket text-electric-blue text-5xl mb-4"></i>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Advanced Platform</h4>
+                            <p class="text-gray-600">Professional-grade virtual airline management</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-32 bg-gradient-to-br from-heritage-blue to-electric-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-heritage-blue/90 to-electric-blue/90"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-black mb-8">Join Our Community</h2>
+                <p class="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto font-medium leading-relaxed">
+                    Connect with passionate virtual pilots from around the world in our vibrant Discord community
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20">
+                    <i class="fab fa-discord text-sky-blue text-5xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Active Discord</h3>
+                    <p class="text-white/80 mb-6 leading-relaxed">
+                        Join over 1,000+ pilots in our friendly Discord server. Get support, share experiences, 
+                        and participate in community events.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-sky-blue hover:text-white transition duration-300 font-medium">
+                        <i class="fab fa-discord mr-2"></i>
+                        Join Discord
+                    </a>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20">
+                    <i class="fas fa-calendar-week text-sunrise-peach text-5xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Weekly Events</h3>
+                    <p class="text-white/80 mb-6 leading-relaxed">
+                        Participate in group flights, seasonal challenges, and special events that bring 
+                        our community together for memorable experiences.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-sunrise-peach hover:text-white transition duration-300 font-medium">
+                        <i class="fas fa-calendar mr-2"></i>
+                        View Events
+                    </a>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20">
+                    <i class="fas fa-headset text-horizon-red text-5xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">24/7 Support</h3>
+                    <p class="text-white/80 mb-6 leading-relaxed">
+                        Our dedicated staff team provides round-the-clock support to help you with 
+                        any questions or technical issues you might encounter.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-horizon-red hover:text-white transition duration-300 font-medium">
+                        <i class="fas fa-life-ring mr-2"></i>
+                        Get Support
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center">
+                <div class="bg-white/5 backdrop-blur-md rounded-3xl p-12 border border-white/10">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-8">Ready to Take Off?</h3>
+                    <p class="text-xl text-white/80 mb-10 max-w-3xl mx-auto">
+                        Experience the most authentic virtual SAS operations with accurate Aanerud liveries, 
+                        real schedules, and a welcoming community of aviation enthusiasts.
+                    </p>
+                    <a href="https://vamsys.io/register/vSAS" target="_blank" 
+                       class="bg-gradient-to-r from-sky-blue to-sunrise-peach text-white px-12 py-5 rounded-full text-xl font-bold hover:shadow-2xl hover:scale-105 transition duration-300 inline-flex items-center">
+                        <i class="fas fa-rocket mr-4"></i>
+                        Join vSAS Today
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-midnight-black text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-12">
+                <div class="lg:col-span-2">
+                    <img src="vSAS_Header_-_White.png" alt="vSAS Logo" class="h-12 mb-6">
+                    <p class="text-lg text-white/70 leading-relaxed mb-8 max-w-md">
+                        Virtual Scandinavian Airlines - Experience authentic SAS operations in flight simulation 
+                        with accurate Aanerud liveries and professional vAMSYS integration.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white/70 hover:text-sky-blue transition duration-300">
+                            <i class="fab fa-discord text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-electric-blue transition duration-300">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-sunrise-peach transition duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-horizon-red transition duration-300">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="text-white/70 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#fleet" class="text-white/70 hover:text-white transition duration-300">Fleet</a></li>
+                        <li><a href="#liveries" class="text-white/70 hover:text-white transition duration-300">Liveries</a></li>
+                        <li><a href="#network" class="text-white/70 hover:text-white transition duration-300">Network</a></li>
+                        <li><a href="#community" class="text-white/70 hover:text-white transition duration-300">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="https://vamsys.io/register/vSAS" target="_blank" class="text-white/70 hover:text-white transition duration-300">Join vAMSYS</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Pilot Handbook</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Livery Downloads</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Support Center</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Discord Server</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-16 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2025 vSAS - All rights reserved.
+                    <br>
+                    <span class="text-sm">
+                        vSAS is not affiliated with the real SAS (Scandinavian Airlines). 
+                    </span>
+                </p>
+            </div>
+        </div>
+    </footer>
+    </div> <!-- End main-content -->
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close sidebar when clicking navigation links with delay
+                    setTimeout(() => {
+                        closeSidebar();
+                    }, 300);
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Sidebar functionality
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        let sidebarHovered = false;
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            if (!sidebarHovered) {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Prevent closing when hovering over sidebar
+        sidebar.addEventListener('mouseenter', () => {
+            sidebarHovered = true;
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+            sidebarHovered = false;
+        });
+
+        // Toggle sidebar
+        sidebarToggle.addEventListener('click', () => {
+            if (sidebar.classList.contains('-translate-x-full')) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
+        });
+
+        // Close sidebar when clicking overlay (force close)
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarHovered = false; // Force close
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close sidebar on escape key (force close)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                sidebarHovered = false; // Force close
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Subtle parallax effect for hero section only
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#home');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeSidebar();
+            }
+        });
+    </script>
+</body>
+</html>

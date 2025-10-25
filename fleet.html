@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Fleet - vSAS</title>
+    <meta name="description" content="Explore the vSAS fleet featuring authentic SAS aircraft with accurate Aanerud liveries - A320neo and A350.">
+    <link rel="icon" type="image/png" href="vSAS_Banner.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'electric-blue': '#1E40AF',
+                        'heritage-blue': '#000C99',
+                        'sky-blue': '#8DD6FF',
+                        'sunrise-peach': '#FFC5C1',
+                        'horizon-red': '#FF5B62',
+                        'midnight-black': '#000000',
+                        'cloud-white': '#FFFFFF',
+                        'mist-grey': '#8F8F8F',
+                    },
+                    fontFamily: {
+                        'scandinavian': ['ScandinavianNew', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'ScandinavianNew';
+            src: url('ScandinavianNew-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ScandinavianNew';
+            src: url('ScandinavianNew-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ScandinavianNew';
+            src: url('ScandinavianNew-Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+        
+        body { 
+            font-family: 'ScandinavianNew', system-ui, sans-serif; 
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+            overflow-x: hidden;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
+        .feature-card {
+            background: linear-gradient(145deg, #FFFFFF 0%, #F8F9FA 100%);
+            border: 1px solid rgba(30, 64, 175, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+            border-color: rgba(30, 64, 175, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar with Logo and Join Button -->
+    <div class="bg-white shadow-sm fixed w-full z-50 border-b border-gray-100">
+        <div class="flex justify-between items-center px-6 py-4">
+            <div class="flex items-center">
+                <button id="sidebar-toggle" class="mr-4 p-2 rounded-lg hover:bg-gray-100 transition duration-200">
+                    <i class="fas fa-bars text-gray-600 text-lg"></i>
+                </button>
+                <a href="index.html">
+                    <img src="vSAS_Header_-_Electric_Blue.png" alt="vSAS Logo" class="h-8">
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-2 text-sm text-gray-600">
+                    <i class="fas fa-globe text-gray-400"></i>
+                    <span>English</span>
+                </div>
+                <a href="https://vamsys.io/register/vSAS" target="_blank" 
+                   class="bg-electric-blue text-white px-6 py-2 rounded-full hover:bg-heritage-blue transition duration-300 font-medium text-sm">
+                    Join vSAS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out z-40 border-r border-gray-100">
+        <div class="p-6 border-b border-gray-100">
+            <a href="index.html">
+                <img src="vSAS_Header_-_Electric_Blue.png" alt="vSAS Logo" class="h-10">
+            </a>
+        </div>
+        
+        <nav class="mt-6">
+            <div class="px-6 space-y-2">
+                <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-home w-5 mr-3 text-gray-400"></i>
+                    Home
+                </a>
+                <a href="fleet.html" class="flex items-center px-4 py-3 bg-electric-blue/10 text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-plane w-5 mr-3 text-electric-blue"></i>
+                    Our Fleet
+                </a>
+                <a href="index.html#liveries" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-palette w-5 mr-3 text-gray-400"></i>
+                    Liveries
+                </a>
+                <a href="index.html#network" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-globe-europe w-5 mr-3 text-gray-400"></i>
+                    Network
+                </a>
+                <a href="index.html#community" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                    <i class="fas fa-users w-5 mr-3 text-gray-400"></i>
+                    Community
+                </a>
+            </div>
+            
+            <div class="mt-8 px-6">
+                <div class="border-t border-gray-100 pt-6">
+                    <a href="https://vamsys.io/register/vSAS" target="_blank" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-user-plus w-5 mr-3 text-gray-400"></i>
+                        vAMSYS Registration
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-book w-5 mr-3 text-gray-400"></i>
+                        Pilot Handbook
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fab fa-discord w-5 mr-3 text-gray-400"></i>
+                        Discord Server
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-electric-blue/5 hover:text-electric-blue rounded-lg transition duration-200 font-medium">
+                        <i class="fas fa-life-ring w-5 mr-3 text-gray-400"></i>
+                        Support
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
+
+    <!-- Fleet Header Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-electric-blue to-heritage-blue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6">Our Fleet</h1>
+            <p class="text-xl md:text-2xl max-w-4xl mx-auto font-medium leading-relaxed opacity-90">
+                Experience authentic SAS operations with our meticulously detailed aircraft fleet featuring accurate Aanerud liveries
+            </p>
+        </div>
+    </section>
+
+    <!-- Fleet Showcase Section -->
+    <section class="py-32 bg-gradient-to-br from-white to-sky-blue/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+            
+            <!-- 1. Airbus A320neo -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="A320neo.png" alt="SAS A320neo" loading="eager"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-electric-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A320neo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        The backbone of our European network. Modern, efficient, and comfortable, 
+                        our A320neo family serves destinations across Europe with SAS's renowned service quality.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">180</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">6,100 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Airbus A321neo -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 lg:order-2">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A321neo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Extended capacity for high-demand routes. The A321neo offers increased passenger capacity 
+                        while maintaining the fuel efficiency and comfort standards of the neo family.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">220</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">7,400 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:order-1">
+                    <img src="A320neo.png" alt="SAS A321neo" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-heritage-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+
+            <!-- 3. Airbus A319 -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="A319.jpg" alt="SAS A319" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sky-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A319</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Perfect for smaller European routes and regional connections. The A319 provides 
+                        excellent flexibility for varying passenger demands across our network.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">144</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">6,850 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Airbus A320ceo -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 lg:order-2">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A320ceo</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        The proven workhorse of our fleet. Reliable A320 Current Engine Option aircraft 
+                        continue to serve our European network with dependable performance.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">174</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">5,700 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:order-1">
+                    <img src="SASA320.png" alt="SAS A320ceo" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sunrise-peach/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+
+            <!-- 5. Airbus A330 -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="a330.webp" alt="SAS A330" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-electric-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A330</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Wide-body excellence for medium to long-haul routes. The A330 delivers comfort 
+                        and efficiency on transatlantic and Asian destinations.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">266</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-globe text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">13,400 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Airbus A350 -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 lg:order-2">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Airbus A350</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Our flagship long-haul aircraft. The A350 represents the pinnacle of modern aviation technology, 
+                        connecting Scandinavia to destinations across North America and Asia with unmatched comfort.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">300</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-globe text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">15,000 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:order-1">
+                    <img src="A350.webp" alt="SAS A350" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-heritage-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+
+            <!-- 7. ATR -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="atr.png" alt="SAS ATR" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sky-blue/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">ATR 72-600</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Perfect for regional operations across Scandinavia. Our ATR fleet connects smaller cities 
+                        with major hubs, maintaining SAS's commitment to comprehensive network coverage.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">68</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">1,500 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Mitsubishi CRJ-900 -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 lg:order-2">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Mitsubishi CRJ-900</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Regional jet excellence for connecting smaller European cities. The CRJ-900 provides 
+                        comfortable regional connectivity with jet performance and reliability.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">88</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">2,956 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:order-1">
+                    <img src="crj.webp" alt="SAS CRJ-900" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-sunrise-peach/20 to-transparent rounded-2xl"></div>
+                </div>
+            </div>
+
+            <!-- 9. Embraer E195 -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="E190.webp" alt="SAS E195" loading="lazy"
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute inset-0 bg-gradient-to-t from-horizon-red/20 to-transparent rounded-2xl"></div>
+                </div>
+                <div class="space-y-8">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900">Embraer E195</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Modern regional aircraft combining efficiency with passenger comfort. The E195 serves 
+                        European routes with excellent fuel economy and spacious cabin design.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-users text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">118</div>
+                            <div class="text-sm text-gray-600">Passengers</div>
+                        </div>
+                        <div class="feature-card p-6 rounded-xl">
+                            <i class="fas fa-route text-electric-blue text-2xl mb-3"></i>
+                            <div class="font-bold text-gray-900">4,260 km</div>
+                            <div class="text-sm text-gray-600">Range</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 bg-gradient-to-r from-electric-blue to-heritage-blue text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-black mb-8">Ready to Fly Our Fleet?</h2>
+            <p class="text-xl mb-12 opacity-90">
+                Experience these magnificent aircraft with authentic Aanerud liveries and realistic flight operations.
+            </p>
+            <a href="https://vamsys.io/register/vSAS" target="_blank" 
+               class="bg-white text-electric-blue px-12 py-5 rounded-full text-xl font-bold hover:shadow-2xl hover:scale-105 transition duration-300 inline-flex items-center">
+                <i class="fas fa-rocket mr-4"></i>
+                Join vSAS Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-midnight-black text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-4 gap-12">
+                <div class="lg:col-span-2">
+                    <img src="vSAS_Header_-_White.png" alt="vSAS Logo" class="h-12 mb-6">
+                    <p class="text-lg text-white/70 leading-relaxed mb-8 max-w-md">
+                        Virtual Scandinavian Airlines - Experience authentic SAS operations in flight simulation 
+                        with accurate Aanerud liveries and professional vAMSYS integration.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white/70 hover:text-sky-blue transition duration-300">
+                            <i class="fab fa-discord text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-electric-blue transition duration-300">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-sunrise-peach transition duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-horizon-red transition duration-300">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-white/70 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="fleet.html" class="text-white/70 hover:text-white transition duration-300">Fleet</a></li>
+                        <li><a href="index.html#liveries" class="text-white/70 hover:text-white transition duration-300">Liveries</a></li>
+                        <li><a href="index.html#network" class="text-white/70 hover:text-white transition duration-300">Network</a></li>
+                        <li><a href="index.html#community" class="text-white/70 hover:text-white transition duration-300">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="https://vamsys.io/register/vSAS" target="_blank" class="text-white/70 hover:text-white transition duration-300">Join vAMSYS</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Pilot Handbook</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Livery Downloads</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Support Center</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition duration-300">Discord Server</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-16 pt-8 text-center">
+                <p class="text-white/50">
+                    © 2025 vSAS - All rights reserved.
+                    <br>
+                    <span class="text-sm">
+                        vSAS is not affiliated with the real SAS (Scandinavian Airlines). 
+                    </span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sidebar functionality
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        let sidebarHovered = false;
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            if (!sidebarHovered) {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Prevent closing when hovering over sidebar
+        sidebar.addEventListener('mouseenter', () => {
+            sidebarHovered = true;
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+            sidebarHovered = false;
+        });
+
+        // Toggle sidebar
+        sidebarToggle.addEventListener('click', () => {
+            if (sidebar.classList.contains('-translate-x-full')) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
+        });
+
+        // Close sidebar when clicking overlay (force close)
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarHovered = false; // Force close
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close sidebar on escape key (force close)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                sidebarHovered = false; // Force close
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeSidebar();
+            }
+        });
+    </script>
+</body>
+</html>

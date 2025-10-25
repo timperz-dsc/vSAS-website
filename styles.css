@@ -1,0 +1,103 @@
+@font-face {
+    font-family: 'ScandinavianNew';
+    src: url('ScandinavianNew-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ScandinavianNew';
+    src: url('ScandinavianNew-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ScandinavianNew';
+    src: url('ScandinavianNew-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body { 
+    font-family: 'ScandinavianNew', system-ui, sans-serif; 
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111.11%;
+    height: 111.11%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fixed header to always show hamburger menu */
+.fixed-header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #1E40AF 0%, #000C99 50%, #8DD6FF 100%);
+}
+
+.aircraft-overlay {
+    background: linear-gradient(90deg, rgba(30, 64, 175, 0.9) 0%, rgba(0, 12, 153, 0.7) 50%, rgba(141, 214, 255, 0.3) 100%);
+}
+
+.livery-showcase {
+    background: linear-gradient(135deg, #8DD6FF 0%, #FFC5C1 50%, #FF5B62 100%);
+}
+
+.feature-card {
+    background: linear-gradient(145deg, #FFFFFF 0%, #F8F9FA 100%);
+    border: 1px solid rgba(30, 64, 175, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+    border-color: rgba(30, 64, 175, 0.3);
+}
+
+/* Ensure content doesn't go behind fixed header */
+.main-content {
+    padding-top: 80px;
+}
+
+/* Limit scroll height to prevent over-scrolling */
+.scroll-container {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Smooth transitions */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        transform: scale(1);
+        width: 100%;
+        height: 100%;
+    }
+    
+    .main-content {
+        padding-top: 70px;
+    }
+}
